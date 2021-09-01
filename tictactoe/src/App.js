@@ -48,15 +48,19 @@ const App = () => {
     setHistory(NEW_GAME)
     setCurrentMove(0)
   }
+  const NoMovesLeft=current.board.every(el=>el!==null)
   return (
     <div className="app">
-      <h1>TIC TAC TOE</h1>
-    <StatusMessage winner={winner} current={current}/>
+      <h1>TIC <span className="text-green">TAC</span> TOE</h1>
+    <StatusMessage winner={winner} current={current}  />
       <Board board={current.board} handleSquareClick={handleSquareClick} winningSquares={winningSquares} />
       <button type="button" onClick={OnNewGame
-      }>Start a new game</button>
+      } className={`btn-reset  ${NoMovesLeft ?'active ':' '}${winner ?'active ':' '}` }>Start a new game</button>
+      <h2 style={{fontWeight:'normal'}} > Game History</h2>
       <History history={history} moveTo={moveTo} currentMove={currentMove}/>
-    </div>
+      <div className="bg-balls"/>
+    </div >
+   
   );
 };
 
